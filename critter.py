@@ -1,4 +1,4 @@
-import time
+import time, random
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
@@ -51,14 +51,24 @@ def setServo(angle):
   set("active", "1")
 
 
+def rand():
+  i = random.randint(1,9)
+  if verbose:
+    print "Random ", i
+  
+  return i
+
+
 # main
 while True:
   look (True)
-  time.sleep (2)
+  time.sleep (rand())
+
   look (False)
   time.sleep (.1)
+
   look (True)
   time.sleep (1)
 
-  shiver (2)
-  time.sleep (3)
+  if 5 < rand():
+    shiver (2)
